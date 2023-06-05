@@ -1,12 +1,11 @@
 ﻿<?php
-include('lib/functions.php');
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
-header("Access-Control-Allow-Methods: POST");
-header("Access-Control-Allow-Methods: PUT");
-header("Access-Control-Allow-Methods: DELETE");
-header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
+header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+header("Content-Type: application/json");
+include('lib/functions.php');
+
 
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && $_SERVER['REQUEST_URI'] == "/read") {
@@ -20,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET" && $_SERVER['REQUEST_URI'] == "/read") {
     echo json_encode($json);
   }
 }
+
 
 
 if ($_SERVER['REQUEST_METHOD'] == "GET" && $_SERVER['REQUEST_URI'] == "/calculate") {
@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && $_SERVER['REQUEST_URI'] == "/create"
 if ($_SERVER['REQUEST_METHOD'] == "PUT" && $_SERVER['REQUEST_URI'] == "/update") {
   $data = json_decode(file_get_contents('php://input'), true);
 
+  
   $id = $data['id'];
   $name = $data['name'];
   $team = $data['team'];
